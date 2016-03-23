@@ -1,15 +1,34 @@
 var fs = require("fs");
 //calling module
-var listInFiles = fs.readFileSync("./files/products.csv", "utf8");
+module.exports = function(path){
+this.productNames = function(callback){
+
 //creat empty array
 var products = [];
-//push that array name to that empty array
- products.push(listInFiles);
-//creat split to become in new lines
-  var answer = listInFiles.split('\n');
-// then console.log the output of answer
- console.log(answer);
+var myMap = {};
 
+//creat split to become in new lines
+
+  //creating forEach to leave the lines unique
+  var listInFiles = fs.readFileSync("./files/products.csv", "utf8");
+  var answer = listInFiles.split('\n');
+
+
+  answer.forEach(function(answer){
+  //var listInFiles = fs.readFileSync("./files/products.csv", "utf8");
+   var productName = answer.split(",")[1];
+//products.push(productName);
+if(myMap[productName]=== undefined){
+products.push(productName);
+myMap[productName] = 0;
+}
+  });
+
+// then console.log the output of answer
+ //console.log(myMap);
+ callback(null,products);
+ }
+};
 
 
 
