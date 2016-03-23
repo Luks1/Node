@@ -1,32 +1,29 @@
-var fs = require("fs");
+ var fs = require("fs");
 //calling module
-module.exports = function(path){
-this.productNames = function(callback){
+            module.exports = function(path){
+
+            this.productNames = function(callback){
 
 //creat empty array
-var products = [];
-var myMap = {};
+  var products = [];
+//creat an empty map
+  var myMap = {};
 
-//creat split to become in new lines
-
-  //creating forEach to leave the lines unique
   var listInFiles = fs.readFileSync("./files/products.csv", "utf8");
+
   var answer = listInFiles.split('\n');
 
+             answer.forEach(function(answer){
 
-  answer.forEach(function(answer){
-  //var listInFiles = fs.readFileSync("./files/products.csv", "utf8");
-   var productName = answer.split(",")[1];
-//products.push(productName);
-if(myMap[productName]=== undefined){
-products.push(productName);
-myMap[productName] = 0;
+  var productName = answer.split(",")[1];
+
+             if(myMap[productName]=== undefined){
+                products.push(productName);
+                             myMap[productName] = 0;
 }
   });
 
-// then console.log the output of answer
- //console.log(myMap);
- callback(null,products);
+               callback(null,products);
  }
 };
 
